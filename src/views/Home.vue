@@ -5,7 +5,10 @@
         <el-scrollbar>
           <el-menu :default-openeds="['2', '3']" default-active="1-1">
             <el-menu-item index="1-1" class="main-page">
-              <router-link to="/home/selfinfo" style="all: unset;display: flex; align-items: center;">
+              <router-link
+                to="/home/selfinfo"
+                style="all: unset; display: flex; align-items: center"
+              >
                 <el-icon>
                   <Document />
                 </el-icon>
@@ -14,43 +17,41 @@
             </el-menu-item>
             <el-sub-menu index="2" class="sub-menu">
               <template #title>
-                <el-icon>
-                  <Location />
-                </el-icon>功能菜单
+                <el-icon> <Location /> </el-icon>功能菜单
               </template>
               <el-menu-item index="2-1" class="menu-item">
-                <router-link to="/home/user" style="all: unset;display: flex; align-items: center;">
+                <router-link to="/home/user" style="all: unset; display: flex; align-items: center">
                   用户管理
                 </router-link>
               </el-menu-item>
               <el-menu-item index="2-2" class="menu-item">
-                <router-link to="/home/article" style="all: unset;display: flex; align-items: center;">
+                <router-link
+                  to="/home/article"
+                  style="all: unset; display: flex; align-items: center"
+                >
                   文章管理
                 </router-link>
               </el-menu-item>
             </el-sub-menu>
             <el-sub-menu index="3" class="sub-menu">
               <template #title>
-                <el-icon>
-                  <Document />
-                </el-icon>主题切换
+                <el-icon> <Document /> </el-icon>主题切换
               </template>
-              <el-menu-item index="3-1" class="menu-item" @click="changeTheme('blue-theme')">蓝色风格</el-menu-item>
-              <el-menu-item index="3-2" class="menu-item" @click="changeTheme('yellow-theme')">黄色风格</el-menu-item>
+              <el-menu-item index="3-1" class="menu-item" @click="changeTheme('blue-theme')"
+                >蓝色风格</el-menu-item
+              >
+              <el-menu-item index="3-2" class="menu-item" @click="changeTheme('yellow-theme')"
+                >黄色风格</el-menu-item
+              >
             </el-sub-menu>
             <el-menu-item index="4" class="first-layer-menu-item">
-              <el-icon>
-                <Document />
-              </el-icon>导航三
+              <el-icon> <Document /> </el-icon>导航三
             </el-menu-item>
             <el-menu-item index="5" class="first-layer-menu-item">
-              <el-icon>
-                <Document />
-              </el-icon>导航四
+              <el-icon> <Document /> </el-icon>导航四
             </el-menu-item>
           </el-menu>
         </el-scrollbar>
-
       </el-aside>
       <el-container>
         <el-header class="header">
@@ -64,12 +65,15 @@
             <template #dropdown>
               <el-dropdown-menu>
                 <el-dropdown-item>
-                  <router-link to="/home/front" style="all: unset;display: flex; align-items: center;">
+                  <router-link
+                    to="/home/front"
+                    style="all: unset; display: flex; align-items: center"
+                  >
                     日历
                   </router-link>
                 </el-dropdown-item>
                 <el-dropdown-item>
-                  <router-link to="/login" style="all: unset;display: flex; align-items: center;">
+                  <router-link to="/login" style="all: unset; display: flex; align-items: center">
                     退出
                   </router-link>
                 </el-dropdown-item>
@@ -154,5 +158,12 @@ const username = ref('admin')
   font-size: 18px;
   color: black;
   padding-top: 10px;
+}
+/* 去除el-dropdown的黑色边框 */
+.el-dropdown-link:focus,
+.el-dropdown-link:hover {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 </style>
