@@ -20,8 +20,11 @@
                 <el-icon> <Location /> </el-icon>功能菜单
               </template>
               <el-menu-item index="2-1" class="menu-item">
-                <router-link to="/home/user" style="all: unset; display: flex; align-items: center">
-                  用户管理
+                <router-link
+                  to="/home/contact"
+                  style="all: unset; display: flex; align-items: center"
+                >
+                  联系人管理
                 </router-link>
               </el-menu-item>
               <el-menu-item index="2-2" class="menu-item">

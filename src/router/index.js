@@ -10,7 +10,7 @@ const router = createRouter({
     },
     {
       path: '/register',
-      name:'register',
+      name: 'register',
       component: () => import('@/views/Register.vue'),
     },
     {
@@ -30,13 +30,13 @@ const router = createRouter({
         },
         {
           path: 'selfinfo',
-          name:'selfinfo',
+          name: 'selfinfo',
           component: () => import('@/views/SelfInfo.vue'),
         },
         {
-          path: 'user',
-          name: 'user',
-          component: () => import('@/views/User.vue'),
+          path: 'contact',
+          name: 'contact',
+          component: () => import('@/views/Contact.vue'),
         },
         {
           path: 'article',
@@ -48,8 +48,8 @@ const router = createRouter({
           name: 'articleinfo',
           component: () => import('@/views/ArticleInfo.vue'),
         },
-      ]
-    }
+      ],
+    },
   ],
 })
 
