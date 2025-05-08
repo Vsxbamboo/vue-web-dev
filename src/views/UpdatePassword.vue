@@ -6,18 +6,21 @@
       </div>
       <div class="body">
         <div class="left">
-          <input type="text" placeholder="用户名">
-          <input type="password" placeholder="旧密码">
+          <input type="text" placeholder="用户名" v-model="form.username" />
+          <input type="password" placeholder="旧密码" v-model="form.password" />
         </div>
         <div class="right">
-          <input type="password" placeholder="新密码">
-          <input type="password" placeholder="确认新密码">
+          <input type="password" placeholder="新密码" v-model="form.newPassword" />
+          <input type="password" placeholder="确认新密码" v-model="form.newPasswordRepeat" />
         </div>
       </div>
       <div class="foot">
         <div class="button" @click="updatePassword">修改密码</div>
         <div class="button">
-          <router-link to="/login" style="all: unset;display: flex; align-items: center; justify-content: center;">
+          <router-link
+            to="/login"
+            style="all: unset; display: flex; align-items: center; justify-content: center"
+          >
             返回登录
           </router-link>
         </div>
@@ -28,30 +31,43 @@
 
 <script setup>
 import { ElMessage } from 'element-plus'
+import { updatePassword as updatePasswordRequest } from '@/utils/user'
+import { ref } from 'vue'
+
+const form = ref({})
 
 const updatePassword = () => {
-    console.log('register')
+  if (form.value.newPassword !== form.value.newPasswordRepeat) {
+    ElMessage.error('两次输入的新密码不一致')
+  }
+  try {
+    delete form.value.newPasswordRepeat
+    console.log(form.value)
+    updatePasswordRequest(form.value)
     ElMessage({
-        message: '修改成功',
-        duration: 1000,
+      message: '修改成功',
+      duration: 1000,
     })
+  } catch (error) {
+    ElMessage.error('修改失败')
+  }
 }
 </script>
 
 <style scoped>
 .button {
-    cursor: pointer;
-    user-select: none;
+  cursor: pointer;
+  user-select: none;
 }
 
 .button:hover {
-    filter: brightness(1.1);
-    /* 悬停时亮度增加 10% */
+  filter: brightness(1.1);
+  /* 悬停时亮度增加 10% */
 }
 
 .button:active {
-    filter: brightness(0.9);
-    /* 点击时亮度降低 10% */
+  filter: brightness(0.9);
+  /* 点击时亮度降低 10% */
 }
 
 @media (min-width: 801px) {
@@ -77,10 +93,10 @@ const updatePassword = () => {
 
   .head {
     justify-content: center;
-    flex: 1
+    flex: 1;
   }
 
-  .head>h2 {
+  .head > h2 {
     text-align: center;
     margin-bottom: 0px;
   }
@@ -113,8 +129,8 @@ const updatePassword = () => {
     padding-bottom: 20px;
   }
 
-  .left>input,
-  .right>input {
+  .left > input,
+  .right > input {
     flex: 1;
     margin-left: 20px;
     margin-right: 20px;
@@ -135,7 +151,7 @@ const updatePassword = () => {
     border-bottom-right-radius: 5px;
   }
 
-  .foot>div {
+  .foot > div {
     flex: 1;
     text-align: center;
     color: #dbdbdb;
@@ -164,10 +180,10 @@ const updatePassword = () => {
 
   .head {
     justify-content: center;
-    flex: 1
+    flex: 1;
   }
 
-  .head>h2 {
+  .head > h2 {
     text-align: center;
     margin-bottom: 0px;
   }
@@ -196,8 +212,8 @@ const updatePassword = () => {
     background-color: #f2f2f2;
   }
 
-  .left>input,
-  .right>input {
+  .left > input,
+  .right > input {
     flex: 1;
     margin-left: 20px;
     margin-right: 20px;
@@ -220,7 +236,7 @@ const updatePassword = () => {
     min-height: 80px;
   }
 
-  .foot>div {
+  .foot > div {
     flex: 1;
     text-align: center;
     color: #dbdbdb;

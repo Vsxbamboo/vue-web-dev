@@ -6,17 +6,14 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [
-    vue(),
-    vueDevTools(),
-  ],
+  plugins: [vue(), vueDevTools()],
   server: {
-    port: 5173,      // ✅ 固定端口
+    port: 5174, // ✅ 固定端口
     host: 'localhost', // 可选，也可以写 0.0.0.0
   },
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
 })

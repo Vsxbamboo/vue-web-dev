@@ -1,21 +1,28 @@
 <template>
-    <div class="main-left">
-            <div class="welcome-text">
-              欢迎 xx
-            </div>
-            <div class="profile-img-container">
-              <el-image class="profile-img" :src="backgroundImg" fit="contain" />
-            </div>
-          </div>
-          <div class="main-right">
-            <el-calendar v-model="date" />
-          </div>
+  <div class="main-left">
+    <div class="welcome-text">欢迎 {{ userInfo.username }}</div>
+    <div class="profile-img-container" v-if="backgroundImg">
+      <el-image class="profile-img" :src="backgroundImg" fit="contain" />
+    </div>
+  </div>
+  <div class="main-right">
+    <el-calendar v-model="date" />
+  </div>
 </template>
 
 <script setup>
-import backgroundImg from '@/assets/img/background.png'
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+import { getUserInfo } from '@/utils/user'
+import { baseURL } from '@/utils/request'
 const date = ref(new Date())
+const backgroundImg = ref('')
+const userInfo = ref({})
+
+onMounted(async () => {
+  const userInfoResponse = await getUserInfo()
+  userInfo.value = userInfoResponse
+  backgroundImg.value = baseURL + '/images/' + userInfoResponse.avatarId
+})
 </script>
 
 <style scoped>

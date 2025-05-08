@@ -60,7 +60,7 @@
         <el-header class="header">
           <el-dropdown>
             <span class="el-dropdown-link">
-              {{ username }} 用户
+              {{ userInfo.username }} 用户
               <el-icon class="el-icon--right">
                 <arrow-down />
               </el-icon>
@@ -76,7 +76,11 @@
                   </router-link>
                 </el-dropdown-item>
                 <el-dropdown-item>
-                  <router-link to="/login" style="all: unset; display: flex; align-items: center">
+                  <router-link
+                    to="/login"
+                    style="all: unset; display: flex; align-items: center"
+                    @click="deleteToken"
+                  >
                     退出
                   </router-link>
                 </el-dropdown-item>
@@ -93,11 +97,20 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-const date = ref(new Date())
+import { ref, onMounted } from 'vue'
 import { useThemeStore } from '@/stores/theme'
+import { getUserInfo } from '@/utils/user'
 const changeTheme = useThemeStore().changeTheme
-const username = ref('admin')
+const userInfo = ref({})
+
+onMounted(async () => {
+  const userInfoResponse = await getUserInfo()
+  userInfo.value = userInfoResponse
+})
+
+const deleteToken = () => {
+  localStorage.removeItem('token')
+}
 </script>
 
 <style scoped>
