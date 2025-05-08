@@ -45,14 +45,14 @@
       <div class="operation-bar">
         <el-button type="primary" plain @click="appendDialogVisible = true">+ 新增</el-button>
         <div class="search-container">
-          <el-input v-model="searchContent" style="width: 240px" placeholder="请输入昵称">
+          <el-input v-model="searchContent" style="width: 240px" placeholder="请输入标题或内容">
             <template #prefix>
               <el-icon>
                 <Search />
               </el-icon>
             </template>
           </el-input>
-          <el-button type="primary">搜索</el-button>
+          <el-button type="primary" @click="onSearch">搜索</el-button>
         </div>
       </div>
       <el-table stripe border :data="tableData" style="width: 100%">
@@ -207,6 +207,22 @@ const deleteDialogConfirm = async () => {
   await deleteArticle(deleteForm.value.articleId)
   fetchFullData()
   deleteDialogVisible.value = false
+}
+
+const onSearch = () => {
+  const keyword = searchContent.value.trim().toLowerCase()
+  if (!keyword) {
+    // 恢复所有文章
+    fullData.value = articles.value
+  } else {
+    // 从原始数据中筛选
+    fullData.value = articles.value.filter(
+      (item) =>
+        item.title.toLowerCase().includes(keyword) || item.content.toLowerCase().includes(keyword),
+    )
+  }
+
+  currentPage.value = 1
 }
 </script>
 
