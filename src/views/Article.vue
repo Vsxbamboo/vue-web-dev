@@ -88,7 +88,6 @@ watch(fullData, () => {
 })
 
 const goToArticleInfo = (row) => {
-  // 将对象序列化为 JSON 字符串
   router.push({
     name: 'articleinfo',
     query: {
